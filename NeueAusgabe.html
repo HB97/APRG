@@ -1,0 +1,37 @@
+<!doctype HTML>
+<head>
+    
+    <title>
+        Neue Ausgabe erstellen
+    </title>
+    <link rel="stylesheet" type="text/css" href="template.css">
+</head>
+<body>
+    
+    <header>
+        <h1>Persönliche Bilanz: variable</h1>
+        <h1>Geasmtausgaben: variable</h1>
+    </header>
+
+    <div class="main">
+        <form action="reiseController.js" id="ausgabe">
+            <div>    
+                <h3>Betrag:</h3> 
+                <input type="number" name="ausgabeBetrag" step="0.01" min="0">
+            </div>
+            
+            <div>
+                <h3>Bezahler:</h3>
+                <input class="check" type="checkbox" name="bezahler1" value="Mitglied1" checked><h4>Mitglied1</h4><br />
+                <input class="check" type="checkbox" name="bezahler2" value="Mitglied2"><h4>Mitglied2</h4><br />
+                <input class="check" type="checkbox" name="bezahler3" value="Mitglied3"><h4>Mitglied3</h4><br />
+                <input class="check" type="checkbox" name="...." value="..."><h4>...</h4><br />        
+            </div>
+
+            <input type="submit" value="Ausgabe erstellen">
+
+        </form>
+        
+    </div>
+
+</body>
