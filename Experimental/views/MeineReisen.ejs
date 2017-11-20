@@ -1,0 +1,18 @@
+<% include partials/header %>
+    <div class="main">
+        <h1><%= title %></h1>
+
+        <ul>
+        <% reisen.forEach(function(reise){ %>
+            <li><%= reise.name %></li>
+
+
+        <% }) %>
+
+        <a href="/neueReise">Neue Reise</a>
+
+        </ul>
+
+    </div>
+
+<% include partials/footer %>
