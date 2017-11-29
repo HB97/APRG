@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const db = require('./db');
+
 
 router.get('/', (req, res)=>{
 
@@ -44,8 +46,18 @@ router.post('/onRegistration', function(req,res){
 	
     // Datensatz definieren
     if (errors.length == 0) {
-        console.log('Kein Fehler');
-        const document = {'name': name, 'vname': vname, 'email': email, 'username': username, 'password': password, 'pwrepeat': pwrepeat};
+        console.log('Kein Fehler beim Erstellen eines neuen Nutzers');
+        
+        
+        let data = {'nutzer_name': name, 'nutzer_vorname': vname, 'nutzer_email': email, 'nutzer_username': username, 'nutzer_pw': password};
+        db.insertBenutzer(data, function(){
+            
+            res.redirect('/login');
+            console.log('fertig');
+             
+        });
+        
+    
     }
 	else{
         console.log(errors);

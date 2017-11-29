@@ -18,10 +18,15 @@ var reisen = [
 
 router.get('/', function(req, res){
 
-    res.render('MeineReisen',{
-        title: 'Deine Reisen',
-        reisen: reisen
-    });
+    if(req.session.authenticated){
+        res.render('MeineReisen',{
+            title: 'Deine Reisen',
+            reisen: reisen
+        });
+    }
+    else{
+        res.redirect('/');
+    }
 
 });
 
