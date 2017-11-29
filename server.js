@@ -102,22 +102,22 @@ app.post('/onLogin', (request, response) => {
  
     let errors = [];
  
-db.collection(DB_COLLECTION).findOne({'username': username}, (error, result) => {
-    if (error) return console.log(error);
+    db.collection(DB_COLLECTION).findOne({'username': username}, (error, result) => {
+        if (error) return console.log(error);
 
-    if (result == null) {
-        errors.push('Der User ' + username + 'existiert nicht.');
-        response.render('/errors', {'error': errors});
-        return;
-    } 
-    else {
-        if (password == result.password) {
-            response.redirect('/');
-        } else {
-            errors.push('Das Passwort für diesen User stimmt nicht überein.');
+        if (result == null) {
+            errors.push('Der User ' + username + 'existiert nicht.');
             response.render('/errors', {'error': errors});
+            return;
+        } 
+        else {
+            if (password == result.password) {
+                response.redirect('/');
+            } else {
+                errors.push('Das Passwort für diesen User stimmt nicht überein.');
+                response.render('/errors', {'error': errors});
+            }
         }
-    }
-});
+    });
 
 });

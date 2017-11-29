@@ -7,6 +7,10 @@ const reise = require('C:/Users/SvenM/OneDrive/Dokumente/GitShit/APRGlocal/clien
 
 const app = express();
 
+const index = require('./routes/index')
+const login = require('./routes/login')
+const registrieren = require('./routes/registrieren')
+
 const meineReisen = require('./routes/meineReisen');
 const neueReise = require('./routes/neueReise');
 
@@ -22,21 +26,20 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'client')));
 
 
-app.use('/', meineReisen); 
+app.use('/', index); 
+app.use('/login', login);
+app.use('/registrieren', registrieren);
+
+app.use('/meineReisen', meineReisen);
 app.use('/neueReise', neueReise); 
 
-app.post('/name', (req, res)=>{
-    var neueReise = reise(req.body.neuerName);
-    console.log(neueReise);
-}); 
 
-//catch 404
-/* 
+
 app.use(function(req, res, next){
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
-}); */
+}); 
 
 
 

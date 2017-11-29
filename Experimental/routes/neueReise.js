@@ -10,18 +10,14 @@ router.get('/', function(req, res, next){
 
 });
 
-/* router.post('/name', (req, res)=>{
+router.post('/name', (req, res)=>{
     var neueReise = reise(req.body.neuerName);
     console.log(neueReise);
-}); */
+    res.redirect('/meineReisen');
 
-/* router.get('/name', (req, res)=>{
-    console.log('Mitg.');
-    res.render('meineReisen',{
-        title: "Meine reisen"
+});
 
-    })   
-}); */
+
 
 
 
