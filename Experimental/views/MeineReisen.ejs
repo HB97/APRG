@@ -5,7 +5,8 @@
         <ul>
 
                 <% reisen.forEach(element => { %>
-                    <li><%= element %></li>
+                    <li><%= element.reise_name %> <a href='/reiseBearbeiten/:<%= element.reise_id %>'>    -> </a></li>
+                    
                 <% }) %>
         
 

@@ -85,29 +85,43 @@ router.post('/neueMitglieder', (req, res)=>{
         }
     }
     db.sendQueryToDB('SELECT nutzer_id FROM benutzer WHERE nutzer_email = ?',mails[0],function(userIdFromDB){
-        console.log(userIdFromDB);
-        console.log(userIdFromDB[0].nutzer_id);
-        let id = userIdFromDB[0].nutzer_id;
+        
+        
         if(userIdFromDB.length == 0){
             errors.push('Es existiert kein Nutzer mit der Email-Addresse: ' + mails[0]);
+            delete req.session.reiseID;
+            res.render('errors', {
+                'error': errors,
+                url: '/meineReisen',
+                pageName: 'Meine Reisen'
+                
+            });
 
         }
         else{
-            db.sendQueryToDB('INSERT INTO benutzer_reisen(nutzer_id,reise_id) VALUES ( (SELECT nutzer_id from Benutzer WHERE nutzer_id = ?), (SELECT reise_id from Reisen WHERE reise_id = ?) )', [id, req.session.reiseID], function(neuerEintrag){
-                console.log('connected ' + id + ' ' + req.session.reiseID);
-                console.log(neuerEintrag);
-                if(errors.length != 0){
-                    res.render('errors', {
+            console.log(userIdFromDB);
+            console.log(userIdFromDB[0].nutzer_id);
+            let id = userIdFromDB[0].nutzer_id;
+            if(id != req.session.user.nutzer_id){
+                db.sendQueryToDB('INSERT INTO benutzer_reisen(nutzer_id,reise_id) VALUES ( (SELECT nutzer_id from Benutzer WHERE nutzer_id = ?), (SELECT reise_id from Reisen WHERE reise_id = ?) )', [id, req.session.reiseID], function(neuerEintrag){
+                    console.log('connected ' + id + ' ' + req.session.reiseID);
+                    console.log(neuerEintrag);
+                    
+                    delete req.session.reiseID;
+                    res.redirect('/meineReisen'); 
+                    console.log('keine fehler');
+
+                });
+            }
+            else {
+                errors.push('Sie sind bereits Mitglied');
+                res.render('errors', {
                     'error': errors,
                     url: '/meineReisen',
                     pageName: 'Meine Reisen'
                     
-                    });
-                }
-                else res.redirect('/meineReisen'); console.log('keine fehler');
-
-
-            });
+                });
+            }
         }
        
     })

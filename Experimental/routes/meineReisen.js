@@ -12,11 +12,11 @@ router.get('/', function(req, res){
         
         let reisen = [];
         
-        db.sendQueryToDB('SELECT r.reise_name FROM  Reisen r, benutzer_reisen br, benutzer b WHERE r.reise_id = br.reise_id AND br.nutzer_id = ? AND b.nutzer_id = ?', [req.session.user.nutzer_id,req.session.user.nutzer_id], function(reiseNamen){
+        db.sendQueryToDB('SELECT * FROM  Reisen r, benutzer_reisen br, benutzer b WHERE r.reise_id = br.reise_id AND br.nutzer_id = ? AND b.nutzer_id = ?', [req.session.user.nutzer_id,req.session.user.nutzer_id], function(reiseNamen){
         
         
             reiseNamen.forEach(element => {
-                reisen.push(element.reise_name);
+                reisen.push(element);
             });
 
             //console.log(reisen);
@@ -25,6 +25,7 @@ router.get('/', function(req, res){
             title: 'Deine Reisen',
             userName: req.session.user.nutzer_name,
             reisen: reisen
+            
 
             });
 

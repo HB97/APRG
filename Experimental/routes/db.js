@@ -96,24 +96,7 @@ exports.sendQueryToDB = function(sqlQuery, data, callback) {
 
 }
 
-exports.loopQueryToDB = function(sqlQuery, array, callback) {
-    array.forEach(element=>{   
-        db.getConnection((err, connection) => {
-            if(err) return console.log(err);
-            else {
-                let query = connection.query(sqlQuery, element, (err, res)=> {
-                    connection.release()
-                    if(err) return console.log(err);
-                    else {
-                    
-                    callback(res);
-                    };
-                });
-            };
-        });
-    });
 
-}
 
 /* exports.getReiseByUserID = function(userID, callback){
     let sql = 'SELECT * FROM Reisen WHERE  ?';
