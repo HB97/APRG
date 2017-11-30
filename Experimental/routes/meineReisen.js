@@ -1,28 +1,33 @@
 const express = require('express');
 const router = express.Router();
-
-var reisen = [
-    {
-        name: 'Mallorca',
-        date: '2.2.2000'
-
-    },
-
-    {
-        name: 'Schwarzwald',
-        date: '3.3.3000'
-    }
+const db = require('./db');
 
 
-]
+
+
 
 router.get('/', function(req, res){
-
+    
     if(req.session.authenticated){
-        res.render('MeineReisen',{
+        
+        let reisen = [];
+        
+        db.sendQueryToDB('SELECT r.reise_name FROM  Reisen r, benutzer_reisen br, benutzer b WHERE r.reise_id = br.reise_id AND br.nutzer_id = ? AND b.nutzer_id = ?', [req.session.user.nutzer_id,req.session.user.nutzer_id], function(reiseNamen){
+        
+        
+            reiseNamen.forEach(element => {
+            reisen.push(element.reise_name);
+            });
+
+            console.log(reisen);
+            
+            res.render('MeineReisen',{
             title: 'Deine Reisen',
             reisen: reisen
+            });
+
         });
+        
     }
     else{
         res.redirect('/');

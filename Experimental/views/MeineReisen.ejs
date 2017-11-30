@@ -3,11 +3,11 @@
         <h1><%= title %></h1>
 
         <ul>
-        <% reisen.forEach(function(reise){ %>
-            
-            <li><%= reise.name %></li>
 
-        <% }) %>
+                <% reisen.forEach(element => { %>
+                    <li><%= element %></li>
+                <% }) %>
+        
 
         <a href="/neueReise">Neue Reise</a>
 

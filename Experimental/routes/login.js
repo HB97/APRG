@@ -4,10 +4,15 @@ const db = require('./db');
 const router = express.Router();
 
 router.get('/', (req, res)=>{
-
-    res.render('Login',{
-        title: 'Login'
-    });
+	if(!req.session.authenticated){
+		res.render('Login',{
+			title: 'Login'
+		});
+	}
+	else{
+		res.redirect('/meineReisen');
+		console.log('Sie sind noch eingeloggt');
+	}
 
 });
 

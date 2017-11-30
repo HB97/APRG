@@ -87,7 +87,7 @@ exports.sendQueryToDB = function(sqlQuery, data, callback) {
                 connection.release()
                 if(err) return console.log(err);
                 else {
-                console.log(res);
+                
                 callback(res);
                 };
             });
