@@ -22,6 +22,7 @@ router.post('/name', (req, res)=>{
         db.sendQueryToDB('SELECT r.reise_name FROM  Reisen r, benutzer_reisen br, benutzer b WHERE r.reise_id = br.reise_id AND br.nutzer_id = ? AND b.nutzer_id = ?', [req.session.user.nutzer_id,req.session.user.nutzer_id], function(reiseNamen){
 
             let vorhanden = false;
+            let errors = [];
 
             reiseNamen.forEach(element => {
                 if (neueReiseName = element.reise_name) vorhanden = true;
@@ -29,8 +30,14 @@ router.post('/name', (req, res)=>{
 
             if (vorhanden){
                 
-                console.log('Diese Reise gibt es bereits');
-                res.redirect('/neueReise');
+                errors.push('Diese Reise gibt es bereits');
+                res.render('errors', {
+                    'error': errors,
+                    url: '/neueReise',
+                    pageName: 'Neue Reise'
+                    
+                });
+                
             }
             else{
                 db.sendQueryToDB('INSERT INTO Reisen(reise_name) VALUES (?)', neueReiseName, function(neueReise){
