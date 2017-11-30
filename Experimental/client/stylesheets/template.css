@@ -91,3 +91,20 @@ h4{
 #LoginLabel{
     padding: 0px 10px;
 }
+.userArea{
+    font-family: 'Gill Sans';
+    color: orange;
+    font-size: 20px;
+    position: fixed;
+    margin: 10px auto;
+    width: 100px;
+    height: 80px;
+    float: right;
+    
+
+}
+.bilanzArea{
+    width: 300px;
+    margin-right: 30px;
+    float: right;
+}

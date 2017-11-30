@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const db = require('./db');
 const router = express.Router();
+const passwordHash = require('password-hash');
 
 router.get('/', (req, res)=>{
 	if(!req.session.authenticated){
@@ -26,7 +27,9 @@ router.post('/onLogin', function(req, res){
 		
 		console.log('nutzerid:' + user[0].nutzer_id);
 
-		if (email == user[0].nutzer_email && password == user[0].nutzer_pw){
+		if (email == user[0].nutzer_email ){
+			console.log('mail gleich');
+			if (passwordHash.verify(password, user[0].nutzer_pw)){
 			console.log('Anmeldung erfolgreich');
 			req.session.authenticated = true; 
 			/*req.session.username = user[0].nutzer_username;
@@ -35,9 +38,11 @@ router.post('/onLogin', function(req, res){
 
 			res.redirect('/meineReisen');
 			console.log(req.session.user);
+			}
 		}
 		else{
 			res.redirect('/');
+			console.log('error');
 		}	
 	});	
 });

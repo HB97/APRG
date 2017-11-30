@@ -23,7 +23,9 @@ router.get('/', function(req, res){
             
             res.render('MeineReisen',{
             title: 'Deine Reisen',
+            userName: req.session.user.nutzer_name,
             reisen: reisen
+
             });
 
         });

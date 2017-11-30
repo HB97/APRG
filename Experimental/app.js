@@ -31,6 +31,7 @@ const app = express();
 const index = require('./routes/index')
 const login = require('./routes/login')
 const registrieren = require('./routes/registrieren')
+const logout = require('./routes/logout')
 
 const meineReisen = require('./routes/meineReisen');
 const neueReise = require('./routes/neueReise');
@@ -43,7 +44,7 @@ app.use(session({
 }));
 
 //password hash, for encoding the pw
-const passwordHash = require('password-hash');
+/* const passwordHash = require('password-hash'); */
 
 //View Engine 
 app.set('view engine', 'ejs');
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use('/', index); 
 app.use('/login', login);
 app.use('/registrieren', registrieren);
+app.use('/logout', logout);
 
 app.use('/meineReisen', meineReisen);
 app.use('/neueReise', neueReise); 

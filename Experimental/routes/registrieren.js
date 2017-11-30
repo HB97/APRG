@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('./db');
-
+const passwordHash = require('password-hash');
 
 router.get('/', (req, res)=>{
 
@@ -46,14 +46,15 @@ router.post('/onRegistration', function(req,res){
 	
     // Datensatz definieren
     if (errors.length == 0) {
-        console.log('Kein Fehler beim Erstellen eines neuen Nutzers');
         
         
-        let data = {'nutzer_name': name, 'nutzer_vorname': vname, 'nutzer_email': email, 'nutzer_username': username, 'nutzer_pw': password};
+        let verchlüsseltesPasswort = passwordHash.generate(password);
+        let data = {'nutzer_name': name, 'nutzer_vorname': vname, 'nutzer_email': email, 'nutzer_username': username, 'nutzer_pw': verchlüsseltesPasswort};
         db.insertBenutzer(data, function(){
             
             res.redirect('/login');
             console.log('fertig');
+            console.log('Kein Fehler beim Erstellen eines neuen Nutzers');
              
         });
         
