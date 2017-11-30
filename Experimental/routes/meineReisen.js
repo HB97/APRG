@@ -16,10 +16,10 @@ router.get('/', function(req, res){
         
         
             reiseNamen.forEach(element => {
-            reisen.push(element.reise_name);
+                reisen.push(element.reise_name);
             });
 
-            console.log(reisen);
+            //console.log(reisen);
             
             res.render('MeineReisen',{
             title: 'Deine Reisen',

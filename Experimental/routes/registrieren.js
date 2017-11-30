@@ -48,7 +48,7 @@ router.post('/onRegistration', function(req,res){
         
         db.sendQueryToDB('SELECT nutzer_email FROM benutzer WHERE nutzer_email= ?',email,function(alleMails){
             console.log(alleMails);
-            if(alleMails!=null){
+            if(alleMails.length != 0){
                 errors.push('Diese Email-Addresse wird bereits verwendet!');
             }
 
