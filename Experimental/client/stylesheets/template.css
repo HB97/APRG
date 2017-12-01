@@ -5,6 +5,7 @@
 }
 body{
     background-color: rgb(61, 61, 61);
+    font-family: 'Gill Sans';
 }
 
 header {
@@ -26,12 +27,15 @@ div{
 a{
     color: inherit;
     text-decoration: none;
+    font-size: 20px;
+    font-family: 'Gill Sans';
+    
 }
 
 h1{
     font-family: 'Gill Sans';
     color: orangered;
-    font-size: 14px;
+    font-size: 16px;
     margin: 10px;
 }
 
@@ -71,6 +75,8 @@ h4{
 }
 
 .main{
+    font-size: 20px;
+    font-family: 'Gill Sans';
     position: relative;
     max-height: 500px;
     max-width: 1000px;
@@ -110,4 +116,14 @@ h4{
 }
 input{
     margin :20px auto;
+}
+button{
+    margin: 20px 20px 20px 0px;
+    
+}
+#attention{
+    color: red;
+    font-size: 16px;
+    font-family: 'Gill Sans';
+
 }

@@ -24,13 +24,13 @@ router.post('/onLogin', function(req, res){
 
 	//db.checkMail(email, function(user){
 	db.sendQueryToDB('SELECT * FROM Benutzer WHERE nutzer_email = ?',email, function(user){	
-		if (user == null){
+		if (user.length == 0){
 			console.log('hi das ist nicht da');
 			errors.push('Dieser Nutzer existiert nicht')
 			res.render('errors', {
 				'error': errors,
-				url: '/registrieren',
-				pageName: 'Registration'
+				url: '/login',
+				pageName: 'Login'
 				
 			});
 		}

@@ -32,9 +32,11 @@ const index = require('./routes/index')
 const login = require('./routes/login')
 const registrieren = require('./routes/registrieren')
 const logout = require('./routes/logout')
+const nutzerBearbeiten = require('./routes/nutzerBearbeiten');
 
 const meineReisen = require('./routes/meineReisen');
 const neueReise = require('./routes/neueReise');
+const reiseBearbeiten = require('./routes/reiseBearbeiten');
 
 //session setup
 app.use(session({
@@ -62,9 +64,11 @@ app.use('/', index);
 app.use('/login', login);
 app.use('/registrieren', registrieren);
 app.use('/logout', logout);
+app.use('/nutzerBearbeiten', nutzerBearbeiten);
 
 app.use('/meineReisen', meineReisen);
 app.use('/neueReise', neueReise); 
+app.use('/reiseBearbeiten', reiseBearbeiten);
 
 
 /* 

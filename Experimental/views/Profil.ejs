@@ -1,0 +1,24 @@
+<% include partials/headerLoggedIn %>
+<div class="main">
+    <% if( typeof update != 'undefined' ){ %>
+        <h1>Erfolreiches Update deines Profils</h1></br>
+    <% }; %>
+    
+    <form action="./nutzerBearbeiten/update" method="POST">
+        Name: <input type="text"  name="name" value=<%= user.nutzer_name %>> <br>
+        Vorname: <input type="text"  name="vname" value=<%= user.nutzer_vorname %>> <br>
+        E-mail: <input type="email"  name="email" value=<%= user.nutzer_email %>> <br>
+        Benutzername: <input type="text"  name="username" value=<%= userName %>> <br>
+        Passwort: <input type="password"  name="password"> <br>
+        Passwort wiederholen: <input type="password"  name="pwrepeat"> <br>
+
+        <button type="submit" id="update">Aktualisieren</button> 
+    </form>
+
+    <a href='/'>Passwort ändern</a></br>
+    <a href='/meineReisen'>Zurück zu meinen Reisen</a></br>
+    <a href='/' id="attention">Nutzer Löschen</a>
+
+
+</div>
+<% include partials/footer %>
